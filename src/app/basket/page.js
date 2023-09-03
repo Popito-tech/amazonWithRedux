@@ -6,7 +6,7 @@ import CheckoutProduct from '../components/CheckoutProduct';
 import { SelecItems, selectTotal } from '../redux/BasketSlice';
 import { useSession } from 'next-auth/react';
 
-function page() {
+function Page() {
     const items = useSelector(SelecItems);
     const total = useSelector(selectTotal);
     const { data: session, status } = useSession();
@@ -67,4 +67,4 @@ function page() {
       )
 }
 
-export default page
+export default Page
