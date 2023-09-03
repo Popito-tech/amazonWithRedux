@@ -4,9 +4,13 @@ import React from 'react'
 import Link from 'next/link.js';
 import { useSelector } from 'react-redux';
 import { SelecItems } from '../redux/BasketSlice';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 
 function Navbar() {
+  const { data: session, status } = useSession();
+  
+
 const items = useSelector(SelecItems);
   return (
     <div>
@@ -33,12 +37,12 @@ const items = useSelector(SelecItems);
 </svg>
         </div>
         <div className='text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap'>
-        <div  className='link' >
-        <p>Hello Sonny Sangha</p>
+        <div  onClick={signIn} className='link' >
+        <p>{session?`Hello, ${session.user.name}`:'Sign In'}</p>
         <p className='font-extrabold md:text-sm'>Account & list</p>
         </div>
 
-        <div className='link'>
+        <div onClick={signOut} className='link'>
         <p>Returns</p>
         <p className='font-extrabold md:text-sm'>& Orders</p>
         </div>
